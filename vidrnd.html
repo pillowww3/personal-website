@@ -14,12 +14,18 @@ video
     max-width: 100%;
     max-height: 100%;
 }
+
     </style>
 </head>
 <body>
+
 <script type="text/javascript">
+    
   document.onreadystatechange = function () {
       if (document.readyState == "interactive") {    
+ 
+    
+
 var videoStorage = [ 
     'http://media.w3.org/2010/05/sintel/trailer',
     'http://techslides.com/demos/sample-videos/small',
@@ -27,19 +33,28 @@ var videoStorage = [
     'http://zippy.gfycat.com/HeavyPlumpIvorybilledwoodpecker'
 ],
     video = document.querySelector('video'),
+    
     activeVideoUrl = videoStorage[Math.round(Math.random() * (videoStorage.length - 1))];        
+        
+
 if(video.canPlayType('video/webm')) {
     video.setAttribute('src', activeVideoUrl + '.webm');
 } else if(video.canPlayType('video/mp4')) {
     video.setAttribute('src', activeVideoUrl + '.mp4');
 }
+    
+
+
     }
 }
 </script>
+
+
 <video autoplay controls loop>
     <source src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4'>
     <source src="http://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm' />
     Video not supported.
 </video>
+
 </body>
 </html>
