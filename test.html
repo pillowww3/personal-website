@@ -8,6 +8,7 @@
       font-size: 1.125em;
       margin: auto;
       padding: 0 0.5em;
+      overflow: auto;
     }
 
     figure {
@@ -32,10 +33,12 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
+      overflow: hidden;
     }
 
     .overlay.active {
       display: flex;
+      overflow: auto;
     }
 
     .overlay-image.active {
@@ -52,42 +55,7 @@
     <img src="img/tw_shirt.webp" style="max-width: 410px;" class="overlay-image" />
     <figcaption>23/05/28</figcaption>
   </figure>
-  <figure class="image-container">
-    <img src="img/somewhere_in_between.webp" style="max-width: 410px;" class="overlay-image" />
-    <figcaption>23/05/06</figcaption>
-  </figure>
-  <figure class="image-container">
-    <img src="img/us_border_patrol.webp" style="max-width: 380px;" class="overlay-image" />
-    <figcaption>23/05/04</figcaption>
-  </figure>
-  <figure class="image-container">
-    <img src="img/blue_collar4.webp" style="max-width: 510px;" class="overlay-image" />
-    <figcaption>23/04/28</figcaption>
-  </figure>
-  <figure class="image-container">
-    <img src="img/metro_sexual_shirt.webp" style="max-width: 500px;" class="overlay-image" />
-    <figcaption>23/04/26</figcaption>
-  </figure>
-  <figure class="image-container">
-    <img src="img/blue_collar3.webp" style="max-width: 700px;" class="overlay-image" />
-    <figcaption>23/04/22</figcaption>
-  </figure>
-  <figure class="image-container">
-    <img src="img/life_is_weird3.webp" style="max-width: 350px;" class="overlay-image" />
-    <figcaption>23/04/05</figcaption>
-  </figure>
-  <figure class="image-container">
-    <img src="img/life_is_weird1.webp" style="max-width: 500px;" class="overlay-image" />
-    <figcaption>23/04/05</figcaption>
-  </figure>
-  <figure class="image-container">
-    <img src="img/blue_collar1.webp" style="max-width: 500px;" class="overlay-image" />
-    <figcaption>23/03/14</figcaption>
-  </figure>
-  <figure class="image-container">
-    <img src="img/blue_collar2.webp" style="max-width: 490px;" class="overlay-image" />
-    <figcaption>23/03/07</figcaption>
-  </figure>
+  <!-- Rest of the figure elements -->
 
   <div class="overlay"></div>
 
@@ -95,6 +63,7 @@
     document.addEventListener('DOMContentLoaded', function() {
       const imageContainers = document.querySelectorAll('.image-container');
       const overlay = document.querySelector('.overlay');
+      const body = document.querySelector('body');
 
       imageContainers.forEach(function(container) {
         const image = container.querySelector('.overlay-image');
@@ -105,10 +74,12 @@
           overlay.appendChild(image.cloneNode(true));
           overlay.appendChild(figcaption.cloneNode(true));
           overlay.classList.toggle('active');
+          body.style.overflow = 'hidden'; // Disable scrolling
         });
 
         overlay.addEventListener('click', function() {
           overlay.classList.remove('active');
+          body.style.overflow = 'auto'; // Enable scrolling
         });
       });
     });
