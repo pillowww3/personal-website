@@ -2,55 +2,48 @@
 <meta charset=utf-8>
 <meta name="robots" content="noindex">
 <style>
-body {
-  font-size: 1.125em;
-  margin: auto;
-  padding: 0 0.5em;
-}
+  body {
+    font-size: 1.125em;
+    margin: auto;
+    padding: 0 0.5em;
+  }
 
-figure {
-  display: inline-block;
-  margin: 1em;
-  padding: 0;
-}
+  figure {
+    display: inline-block;
+    margin: 1em;
+    padding: 0;
+  }
 
-figcaption {
-  font-size: 0.75em;
-  font-style: italic;
-}
+  figcaption {
+    font-size: 0.75em;
+    font-style: italic;
+  }
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  overflow: hidden;
-}
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    overflow: hidden;
+  }
 
-.overlay img {
-  max-height: 100%;
-  max-width: 100%;
-}
+  .overlay img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    cursor: pointer;
+  }
 
-.overlay.active {
-  pointer-events: auto;
-  overflow: auto;
-}
-
-.overlay.active img {
-  cursor: pointer;
-}
-
-h1 {
-  cursor: pointer;
-}
-
+  .overlay.active {
+    pointer-events: auto;
+    overflow: auto;
+  }
 </style>
 <h1>three bedorom<br>apartemnt</h1>
 <figure><img src="img/tw_shirt.webp" style="max-width:410px;" /><figcaption>23/05/28</figcaption></figure>
@@ -58,35 +51,29 @@ h1 {
 <figure><img src="img/us_border_patrol.webp" style="max-width:380px;" /><figcaption>23/05/04</figcaption></figure>
 
 <script>
-  // Add event listeners to the images
   const images = document.querySelectorAll("figure img");
+
+  function openOverlay(image) {
+    const overlay = document.createElement("div");
+    overlay.classList.add("overlay");
+    overlay.innerHTML = `<img src="${image.src}" />`;
+
+    document.body.appendChild(overlay);
+    document.body.style.overflow = "hidden";
+
+    overlay.addEventListener("click", () => {
+      overlay.classList.remove("active");
+      document.body.style.overflow = "";
+    });
+
+    setTimeout(() => {
+      overlay.classList.add("active");
+    }, 10);
+  }
+
   images.forEach((image) => {
     image.addEventListener("click", (e) => {
-      const overlay = document.createElement("div");
-      overlay.classList.add("overlay");
-      overlay.innerHTML = `<img src="${image.src}" />`;
-
-      document.body.appendChild(overlay);
-      document.body.style.overflow = "hidden";
-
-      overlay.addEventListener("click", () => {
-        overlay.classList.remove("active");
-        document.body.style.overflow = "";
-      });
-
-      setTimeout(() => {
-        overlay.classList.add("active");
-      }, 10);
+      openOverlay(image);
     });
-  });
-
-  // Add event listener to the h1 element to close the overlay
-  const title = document.querySelector("h1");
-  title.addEventListener("click", () => {
-    const activeOverlay = document.querySelector(".overlay.active");
-    if (activeOverlay) {
-      activeOverlay.classList.remove("active");
-      document.body.style.overflow = "";
-    }
   });
 </script>
