@@ -1,74 +1,77 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="robots" content="noindex">
-  <style>
-    body {
-      font-size: 1.125em;
-      margin: auto;
-      padding: 0 0.5em;
-    }
-    figure {
-      display: inline-block;
-      margin: 1em;
-      padding: 0;
-    }
-    figcaption {
-      font-size: 0.75em;
-      font-style: italic;
-    }
-    /* Overlay styles */
-    .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.9);
-      z-index: 9999;
-      display: none;
-    }
-    .overlay img {
-      max-width: 90vw;
-      max-height: 90vh;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  </style>
-</head>
-<body>
-  <h1>three bedroom<br>apartment</h1>
-  <figure><img src="img/tw_shirt.webp" style="max-width:410px;" /><figcaption>23/05/28</figcaption></figure>
-  <figure><img src="img/somewhere_in_between.webp" style="max-width:410px;" /><figcaption>23/05/06</figcaption></figure>
-  <figure><img src="img/us_border_patrol.webp" style="max-width:380px;" /><figcaption>23/05/04</figcaption></figure>
+<meta charset=utf-8>
+<meta name="robots" content="noindex">
 
-  <!-- Overlay HTML -->
-  <div class="overlay">
-    <img id="overlayImage" src="" alt="Overlay Image">
-  </div>
+<!-- Add CSS for the overlay -->
+<style>
+body{
+  font-size:1.125em;
+  margin:auto;
+  padding:0 0.5em;
+  overflow-x: hidden;
+}
+figure{
+  display:inline-block;
+  margin:1em;
+  padding:0;
+}
+figcaption{
+  font-size:0.75em;
+  font-style:italic;
+}
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.9);
+  z-index: 2;
+  cursor: pointer;
+}
+#overlayContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  max-height: 90%;
+}
+</style>
 
-  <script>
-    // JavaScript to handle overlay functionality
-    const figures = document.querySelectorAll('figure');
-    const overlay = document.querySelector('.overlay');
-    const overlayImage = document.querySelector('#overlayImage');
+<h1>Three Bedroom<br>Apartment C</h1>
 
-    figures.forEach(figure => {
-      const image = figure.querySelector('img');
-      image.addEventListener('click', () => {
-        overlayImage.src = image.src;
-        overlay.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-      });
-    });
+<!-- Add a class to the images -->
+<figure><img class="overlayImage" src="img/tw_shirt.webp" style="max-width:410px;" /><figcaption>23/05/28</figcaption></figure>
+<figure><img class="overlayImage" src="img/somewhere_in_between.webp" style="max-width:410px;" /><figcaption>23/05/06</figcaption></figure>
+<figure><img class="overlayImage" src="img/us_border_patrol.webp" style="max-width:380px;" /><figcaption>23/05/04</figcaption></figure>
 
-    overlay.addEventListener('click', () => {
-      overlay.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    });
-  </script>
-</body>
-</html>
+<!-- Add HTML for the overlay -->
+<div id="overlay" onclick="off()">
+  <img id="overlayContent">
+</div>
+
+<!-- Add JavaScript for the overlay -->
+<script>
+// Function to show the overlay with the image
+function on(imgSrc) {
+  document.getElementById("overlay").style.display = "block";
+  document.getElementById("overlayContent").src = imgSrc;
+  document.body.style.overflow = 'hidden';
+}
+
+// Function to hide the overlay
+function off() {
+  document.getElementById("overlay").style.display = "none";
+  document.body.style.overflow = 'auto';
+}
+
+// Add Event Listeners to all images with class overlayImage
+let images = document.querySelectorAll('.overlayImage');
+for (let img of images) {
+  img.addEventListener('click', function() { on(img.src); });
+}
+</script>
