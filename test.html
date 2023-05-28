@@ -18,73 +18,57 @@
       font-size: 0.75em;
       font-style: italic;
     }
+    /* Overlay styles */
     .overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      display: none;
-      justify-content: center;
-      align-items: center;
+      background: rgba(0, 0, 0, 0.9);
       z-index: 9999;
+      display: none;
     }
     .overlay img {
-      max-width: 100%;
-      max-height: 100%;
+      max-width: 90vw;
+      max-height: 90vh;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   </style>
 </head>
 <body>
-  kj
   <h1>three bedroom<br>apartment</h1>
-  <figure>
-    <img src="img/tw_shirt.webp" style="max-width: 410px;" />
-    <figcaption>23/05/28</figcaption>
-  </figure>
-  <figure>
-    <img src="img/somewhere_in_between.webp" style="max-width: 410px;" />
-    <figcaption>23/05/06</figcaption>
-  </figure>
-  <figure>
-    <img src="img/us_border_patrol.webp" style="max-width: 380px;" />
-    <figcaption>23/05/04</figcaption>
-  </figure>
+  <figure><img src="img/tw_shirt.webp" style="max-width:410px;" /><figcaption>23/05/28</figcaption></figure>
+  <figure><img src="img/somewhere_in_between.webp" style="max-width:410px;" /><figcaption>23/05/06</figcaption></figure>
+  <figure><img src="img/us_border_patrol.webp" style="max-width:380px;" /><figcaption>23/05/04</figcaption></figure>
 
+  <!-- Overlay HTML -->
   <div class="overlay">
-    <img id="overlay-img" src="" />
+    <img id="overlayImage" src="" alt="Overlay Image">
   </div>
 
   <script>
-    // Get references to the necessary elements
+    // JavaScript to handle overlay functionality
+    const figures = document.querySelectorAll('figure');
     const overlay = document.querySelector('.overlay');
-    const overlayImg = document.getElementById('overlay-img');
+    const overlayImage = document.querySelector('#overlayImage');
 
-    // Function to handle image click
-    function handleImageClick(event) {
-      const clickedImgSrc = event.target.getAttribute('src');
-      overlayImg.src = clickedImgSrc;
-      overlay.style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Disable scrolling
-      document.body.style.position = 'fixed'; // Fix the position of the body
-    }
-
-    // Function to close the overlay
-    function closeOverlay() {
-      overlay.style.display = 'none';
-      document.body.style.overflow = 'auto'; // Enable scrolling
-      document.body.style.position = 'static'; // Restore the position of the body
-    }
-
-    // Attach click event listeners to all images
-    const images = document.querySelectorAll('figure img');
-    images.forEach(image => {
-      image.addEventListener('click', handleImageClick);
+    figures.forEach(figure => {
+      const image = figure.querySelector('img');
+      image.addEventListener('click', () => {
+        overlayImage.src = image.src;
+        overlay.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      });
     });
 
-    // Attach click event listener to close overlay when clicked outside the image
-    overlay.addEventListener('click', closeOverlay);
+    overlay.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    });
   </script>
 </body>
 </html>
