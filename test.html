@@ -37,7 +37,7 @@
   </style>
 </head>
 <body>
-  test
+  kj
   <h1>three bedroom<br>apartment</h1>
   <figure>
     <img src="img/tw_shirt.webp" style="max-width: 410px;" />
@@ -67,12 +67,14 @@
       overlayImg.src = clickedImgSrc;
       overlay.style.display = 'flex';
       document.body.style.overflow = 'hidden'; // Disable scrolling
+      document.body.style.position = 'fixed'; // Fix the position of the body
     }
 
     // Function to close the overlay
     function closeOverlay() {
       overlay.style.display = 'none';
       document.body.style.overflow = 'auto'; // Enable scrolling
+      document.body.style.position = 'static'; // Restore the position of the body
     }
 
     // Attach click event listeners to all images
