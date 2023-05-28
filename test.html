@@ -1,79 +1,88 @@
 <!DOCTYPE html>
-<meta charset=utf-8>
-<meta name="robots" content="noindex">
-<style>
-  body {
-    font-size: 1.125em;
-    margin: auto;
-    padding: 0 0.5em;
-  }
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <style>
+    body {
+      font-size: 1.125em;
+      margin: auto;
+      padding: 0 0.5em;
+    }
+    figure {
+      display: inline-block;
+      margin: 1em;
+      padding: 0;
+    }
+    figcaption {
+      font-size: 0.75em;
+      font-style: italic;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .overlay img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  test
+  <h1>three bedroom<br>apartment</h1>
+  <figure>
+    <img src="img/tw_shirt.webp" style="max-width: 410px;" />
+    <figcaption>23/05/28</figcaption>
+  </figure>
+  <figure>
+    <img src="img/somewhere_in_between.webp" style="max-width: 410px;" />
+    <figcaption>23/05/06</figcaption>
+  </figure>
+  <figure>
+    <img src="img/us_border_patrol.webp" style="max-width: 380px;" />
+    <figcaption>23/05/04</figcaption>
+  </figure>
 
-  figure {
-    display: inline-block;
-    margin: 1em;
-    padding: 0;
-  }
+  <div class="overlay">
+    <img id="overlay-img" src="" />
+  </div>
 
-  figcaption {
-    font-size: 0.75em;
-    font-style: italic;
-  }
+  <script>
+    // Get references to the necessary elements
+    const overlay = document.querySelector('.overlay');
+    const overlayImg = document.getElementById('overlay-img');
 
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    overflow: hidden;
-  }
+    // Function to handle image click
+    function handleImageClick(event) {
+      const clickedImgSrc = event.target.getAttribute('src');
+      overlayImg.src = clickedImgSrc;
+      overlay.style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Disable scrolling
+    }
 
-  .overlay img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-    cursor: pointer;
-  }
+    // Function to close the overlay
+    function closeOverlay() {
+      overlay.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Enable scrolling
+    }
 
-  .overlay.active {
-    pointer-events: auto;
-    overflow: auto;
-  }
-</style>
-<h1>three bedorom<br>apartemnt</h1>
-<figure><img src="img/tw_shirt.webp" style="max-width:410px;" /><figcaption>23/05/28</figcaption></figure>
-<figure><img src="img/somewhere_in_between.webp" style="max-width:410px;" /><figcaption>23/05/06</figcaption></figure>
-<figure><img src="img/us_border_patrol.webp" style="max-width:380px;" /><figcaption>23/05/04</figcaption></figure>
-
-<script>
-  const images = document.querySelectorAll("figure img");
-
-  function openOverlay(image) {
-    const overlay = document.createElement("div");
-    overlay.classList.add("overlay");
-    overlay.innerHTML = `<img src="${image.src}" />`;
-
-    document.body.appendChild(overlay);
-    document.body.style.overflow = "hidden";
-
-    overlay.addEventListener("click", () => {
-      overlay.classList.remove("active");
-      document.body.style.overflow = "";
+    // Attach click event listeners to all images
+    const images = document.querySelectorAll('figure img');
+    images.forEach(image => {
+      image.addEventListener('click', handleImageClick);
     });
 
-    setTimeout(() => {
-      overlay.classList.add("active");
-    }, 10);
-  }
-
-  images.forEach((image) => {
-    image.addEventListener("click", (e) => {
-      openOverlay(image);
-    });
-  });
-</script>
+    // Attach click event listener to close overlay when clicked outside the image
+    overlay.addEventListener('click', closeOverlay);
+  </script>
+</body>
+</html>
