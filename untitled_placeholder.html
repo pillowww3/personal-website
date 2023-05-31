@@ -6,7 +6,7 @@ body{background-color:white;color;black;font-size:1.125em;margin:auto;padding:0 
 figure{display:inline-block;margin:1em;padding:0;}
 figcaption{font-size:0.75em;font-style:italic;}
 </style>
-<h1>three bedorom<br>apartemnt</h1>
+<h1 onclick="toggleColors()">three bedorom<br>apartemnt</h1>
 <figure><iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1524426499&color=%23848484&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe><figcaption>23/05/28</figcaption></figure>
 <figure><img src="img/somewhere_in_between.webp" style="max-width:410px;" /><figcaption>23/05/06</figcaption></figure>
 <figure><img src="img/us_border_patrol.webp" style="max-width:380px;" /><figcaption>23/05/04</figcaption></figure>
@@ -22,19 +22,17 @@ figcaption{font-size:0.75em;font-style:italic;}
 <figure><img src="img/blue_collar1.webp" style="max-width:500px;" /><figcaption>23/03/14</figcaption></figure>
 <figure><img src="img/blue_collar2.webp" style="max-width:490px;" /><figcaption>23/03/07</figcaption></figure>
 <button onclick="toggleColors()">Toggle Colors</button>
-
-  <script>
-    function toggleColors() {
-      var body = document.body;
-      var currentBackgroundColor = body.style.backgroundColor;
-      var currentFontColor = body.style.color;
-
-      if (currentBackgroundColor === 'white') {
-        body.style.backgroundColor = 'black';
-        body.style.color = 'white';
-      } else {
-        body.style.backgroundColor = 'white';
-        body.style.color = 'black';
-      }
-    }
-  </script>
+<script>
+function toggleColors() {
+var body = document.body;
+var currentBackgroundColor = body.style.backgroundColor;
+var currentFontColor = body.style.color;
+if (currentBackgroundColor === 'white') {
+body.style.backgroundColor = 'black';
+body.style.color = 'white';
+} else {
+body.style.backgroundColor = 'white';
+body.style.color = 'black';
+}
+}
+</script>
