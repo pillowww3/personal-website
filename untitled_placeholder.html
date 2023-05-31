@@ -21,18 +21,17 @@ figcaption{font-size:0.75em;font-style:italic;}
 <figure><img src="img/life_is_weird1.webp" style="max-width:500px;" /><figcaption>23/04/05</figcaption></figure>
 <figure><img src="img/blue_collar1.webp" style="max-width:500px;" /><figcaption>23/03/14</figcaption></figure>
 <figure><img src="img/blue_collar2.webp" style="max-width:490px;" /><figcaption>23/03/07</figcaption></figure>
-<button onclick="toggleColors()">Toggle Colors</button>
 <script>
 function toggleColors() {
 var body = document.body;
 var currentBackgroundColor = body.style.backgroundColor;
 var currentFontColor = body.style.color;
-if (currentBackgroundColor === 'white') {
-body.style.backgroundColor = 'black';
-body.style.color = 'white';
-} else {
+if (currentBackgroundColor === 'black') {
 body.style.backgroundColor = 'white';
 body.style.color = 'black';
+} else {
+body.style.backgroundColor = 'black';
+body.style.color = 'white';
 }
 }
 </script>
