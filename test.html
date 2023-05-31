@@ -2,43 +2,53 @@
 <meta charset=utf-8>
 <meta name="robots" content="noindex">
 <style>
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+#root, #__next {
+  isolation: isolate;
+}
 body{background-color:white;color;black;font-size:1.125em;margin:auto;padding:0 0.5em;}
 figure{display:inline-block;margin:1em;padding:0;}
 figcaption{font-size:0.75em;font-style:italic;}
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.overlay img {
-  max-width: 90vw;
-  max-height: 90vh;
-  object-fit: contain;
-}
+.overlay{position:fixed;top:0;left:0;width:100%;height:100%;background-color:transparent;display:flex;align-items:center;justify-content:center;z-index:9999;}
+.overlay img{max-width:90vw;max-height:90vh;object-fit:contain;}
 </style>
 <h1 onclick="toggleColors()">three bedorom<br>apartemnt</h1>
 <figure><iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1524426499&color=%23848484&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe><figcaption>23/05/28</figcaption></figure>
 <figure onclick="showOverlay(this)" class="image-figure"><img src="img/somewhere_in_between.webp" style="max-width:410px;" /><figcaption>23/05/06</figcaption></figure>
-<figure><img src="img/us_border_patrol.webp" style="max-width:380px;" /><figcaption>23/05/04</figcaption></figure>
+<figure onclick="showOverlay(this)" class="image-figure"><img src="img/us_border_patrol.webp" style="max-width:380px;" /><figcaption>23/05/04</figcaption></figure>
 <figure><iframe style="border: 0; width: 350px; height: 350px;" src="https://bandcamp.com/EmbeddedPlayer/track=3058856779/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/" seamless><a href="https://jpg1.bandcamp.com/track/penthouse-nyc">Penthouse NYC by jpg</a></iframe><figcaption>23/05/02</figcaption></figure>
 <figure><iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1504552120&color=%23848484&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe><figcaption>23/05/02</figcaption></figure>
 <figure><iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1503975064&color=%23848484&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"></iframe><figcaption>23/05/01</figcaption></figure>
-<figure><img src="img/blue_collar4.webp" style="max-width:510px;" /><figcaption>23/04/28</figcaption></figure>
+<figure onclick="showOverlay(this)" class="image-figure"><img src="img/blue_collar4.webp" style="max-width:510px;" /><figcaption>23/04/28</figcaption></figure>
 <figure><iframe style="border: 0; width: 350px; height: 350px;" src="https://bandcamp.com/EmbeddedPlayer/track=3676116586/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/" seamless><a href="https://jpg1.bandcamp.com/track/taxes">Taxes by jpg</a></iframe><figcaption>23/04/26</figcaption></figure>
-<figure><img src="img/metro_sexual_shirt.webp" style="max-width:500px;" /><figcaption>23/04/26</figcaption></figure>
-<figure><img src="img/blue_collar3.webp" style="max-width:700px;" /><figcaption>23/04/22</figcaption></figure>
-<figure><img src="img/life_is_weird3.webp" style="max-width:350px;" /><figcaption>23/04/05</figcaption></figure>
-<figure><img src="img/life_is_weird1.webp" style="max-width:500px;" /><figcaption>23/04/05</figcaption></figure>
-<figure><img src="img/blue_collar1.webp" style="max-width:500px;" /><figcaption>23/03/14</figcaption></figure>
-<figure><img src="img/blue_collar2.webp" style="max-width:490px;" /><figcaption>23/03/07</figcaption></figure>
+<figure onclick="showOverlay(this)" class="image-figure"><img src="img/metro_sexual_shirt.webp" style="max-width:500px;" /><figcaption>23/04/26</figcaption></figure>
+<figure onclick="showOverlay(this)" class="image-figure"><img src="img/blue_collar3.webp" style="max-width:700px;" /><figcaption>23/04/22</figcaption></figure>
+<figure onclick="showOverlay(this)" class="image-figure"><img src="img/life_is_weird3.webp" style="max-width:350px;" /><figcaption>23/04/05</figcaption></figure>
+<figure onclick="showOverlay(this)" class="image-figure"><img src="img/life_is_weird1.webp" style="max-width:500px;" /><figcaption>23/04/05</figcaption></figure>
+<figure onclick="showOverlay(this)" class="image-figure"><img src="img/blue_collar1.webp" style="max-width:500px;" /><figcaption>23/03/14</figcaption></figure>
+<figure onclick="showOverlay(this)" class="image-figure"><img src="img/blue_collar2.webp" style="max-width:490px;" /><figcaption>23/03/07</figcaption></figure>
 <script>
 function toggleColors() {
 var body = document.body;
@@ -53,16 +63,14 @@ body.style.color = 'white';
 }
 }
 function showOverlay(element) {
-  var overlay = document.createElement('div');
-  overlay.className = 'overlay';
-  var image = document.createElement('img');
-  image.src = element.querySelector('img').src;
-  overlay.appendChild(image);
-
-  overlay.onclick = function() {
-    overlay.remove();
-  };
-
-  document.body.appendChild(overlay);
+var overlay = document.createElement('div');
+overlay.className = 'overlay';
+var image = document.createElement('img');
+image.src = element.querySelector('img').src;
+overlay.appendChild(image);
+overlay.onclick = function() {
+overlay.remove();
+};
+document.body.appendChild(overlay);
 }
 </script>
